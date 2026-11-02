@@ -3,6 +3,7 @@ package transport.visitor;
 import transport.domain.tree.BusLeaf;
 import transport.domain.tree.ChargingHubLeaf;
 import transport.domain.tree.EngineType;
+import transport.domain.tree.FerryLeaf;
 import transport.domain.tree.NetworkComposite;
 import transport.domain.tree.PhysicalStationLeaf;
 import transport.domain.tree.RouteComposite;
@@ -42,6 +43,12 @@ public final class FleetOperatingCostVisitor implements TransportVisitor<Double>
     public Double visit(TramLeaf tram) {
         double energyCost = tram.mileageKm() * rates.tramEnergyKwhPerKm() * rates.electricityPricePerKwh();
         return energyCost + maintenanceCost(tram.mileageKm());
+    }
+
+    @Override
+    public Double visit(FerryLeaf ferry) {
+        double liters = ferry.mileageKm() / 100.0 * ferry.fuelPer100Km();
+        return liters * rates.fuelPricePerLiter() + maintenanceCost(ferry.mileageKm());
     }
 
     @Override

@@ -2,6 +2,7 @@ package transport.visitor;
 
 import transport.domain.tree.BusLeaf;
 import transport.domain.tree.ChargingHubLeaf;
+import transport.domain.tree.FerryLeaf;
 import transport.domain.tree.NetworkComposite;
 import transport.domain.tree.PhysicalStationLeaf;
 import transport.domain.tree.RouteComposite;
@@ -21,6 +22,8 @@ public interface TransportVisitor<R> {
     R visit(BusLeaf bus);
 
     R visit(TramLeaf tram);
+
+    R visit(FerryLeaf ferry);
 
     R visit(PhysicalStationLeaf station);
 

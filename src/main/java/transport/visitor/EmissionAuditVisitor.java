@@ -3,6 +3,7 @@ package transport.visitor;
 import transport.domain.tree.BusLeaf;
 import transport.domain.tree.ChargingHubLeaf;
 import transport.domain.tree.EngineType;
+import transport.domain.tree.FerryLeaf;
 import transport.domain.tree.NetworkComposite;
 import transport.domain.tree.PhysicalStationLeaf;
 import transport.domain.tree.RouteComposite;
@@ -41,6 +42,11 @@ public final class EmissionAuditVisitor implements TransportVisitor<Double> {
     @Override
     public Double visit(TramLeaf tram) {
         return tram.mileageKm() * tramEnergyKwhPerKm * kgCo2PerKwh;
+    }
+
+    @Override
+    public Double visit(FerryLeaf ferry) {
+        return ferry.mileageKm() / 100.0 * ferry.fuelPer100Km() * kgCo2PerLiterDiesel;
     }
 
     @Override

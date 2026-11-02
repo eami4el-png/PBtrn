@@ -2,6 +2,7 @@ package transport.visitor;
 
 import transport.domain.tree.BusLeaf;
 import transport.domain.tree.ChargingHubLeaf;
+import transport.domain.tree.FerryLeaf;
 import transport.domain.tree.NetworkComposite;
 import transport.domain.tree.PhysicalStationLeaf;
 import transport.domain.tree.RouteComposite;
@@ -41,6 +42,12 @@ public final class NetworkCensusVisitor implements TransportVisitor<NetworkCensu
         countVehicle(tram.capacity());
         tramCount++;
         pantographWearSum += tram.pantographWearPercent();
+        return snapshot();
+    }
+
+    @Override
+    public NetworkCensus visit(FerryLeaf ferry) {
+        countVehicle(ferry.capacity());
         return snapshot();
     }
 

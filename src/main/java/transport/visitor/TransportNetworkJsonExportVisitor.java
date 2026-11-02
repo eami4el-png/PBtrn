@@ -2,6 +2,7 @@ package transport.visitor;
 
 import transport.domain.tree.BusLeaf;
 import transport.domain.tree.ChargingHubLeaf;
+import transport.domain.tree.FerryLeaf;
 import transport.domain.tree.NetworkComposite;
 import transport.domain.tree.PhysicalStationLeaf;
 import transport.domain.tree.RouteComposite;
@@ -60,6 +61,16 @@ public final class TransportNetworkJsonExportVisitor implements TransportVisitor
                 "networkVoltage", number(tram.networkVoltage()),
                 "pantographWearPercent", number(tram.pantographWearPercent()),
                 "mileageKm", number(tram.mileageKm())));
+    }
+
+    @Override
+    public String visit(FerryLeaf ferry) {
+        return object(fields(
+                "type", quote("ferry"),
+                "id", quote(ferry.id()),
+                "capacity", String.valueOf(ferry.capacity()),
+                "fuelPer100Km", number(ferry.fuelPer100Km()),
+                "mileageKm", number(ferry.mileageKm())));
     }
 
     @Override

@@ -4,6 +4,7 @@ import transport.domain.event.DelaySeverity;
 import transport.domain.event.MaintenanceTicket;
 import transport.domain.tree.BusLeaf;
 import transport.domain.tree.ChargingHubLeaf;
+import transport.domain.tree.FerryLeaf;
 import transport.domain.tree.NetworkComposite;
 import transport.domain.tree.PhysicalStationLeaf;
 import transport.domain.tree.RouteComposite;
@@ -61,6 +62,11 @@ public final class RouteEmergencyInspectionVisitor implements TransportVisitor<M
             findings.add(String.format("Tram %s: pantograph wear %.1f%% exceeds %.1f%%",
                     tram.id(), tram.pantographWearPercent(), PANTOGRAPH_WEAR_LIMIT_PERCENT));
         }
+        return ticket();
+    }
+
+    @Override
+    public MaintenanceTicket visit(FerryLeaf ferry) {
         return ticket();
     }
 

@@ -2,6 +2,7 @@ package transport.visitor;
 
 import transport.domain.tree.BusLeaf;
 import transport.domain.tree.ChargingHubLeaf;
+import transport.domain.tree.FerryLeaf;
 import transport.domain.tree.NetworkComposite;
 import transport.domain.tree.PhysicalStationLeaf;
 import transport.domain.tree.RouteComposite;
@@ -33,6 +34,11 @@ public final class AccessibilityAuditVisitor implements TransportVisitor<List<Ph
 
     @Override
     public List<PhysicalStationLeaf> visit(TramLeaf tram) {
+        return List.of();
+    }
+
+    @Override
+    public List<PhysicalStationLeaf> visit(FerryLeaf ferry) {
         return List.of();
     }
 
